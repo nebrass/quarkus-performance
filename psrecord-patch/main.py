@@ -217,9 +217,9 @@ def monitor(pid, logfile=None, plot=None, duration=None, interval=None,
         import matplotlib.pyplot as plt
         import numpy as np
 
-        #plt.style.use('dark_background')
+        plt.style.use('ggplot')
 
-        fig, ax = plt.subplots(facecolor=(.18, .31, .31))
+        fig, ax = plt.subplots(facecolor="white")
         fig.suptitle('CPU & Memory Utilisation', fontsize=14, fontweight='bold')
 
         ax.set_facecolor('aliceblue')

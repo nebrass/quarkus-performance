@@ -14,19 +14,19 @@ jabba() {
 export DEMO_URL=http://localhost:8080/hello
 
 # run simple quarkus native image test
-/work/scripts/test-single.sh "/work/demo-quarkus/target/demo-ce -Xmn8M -Xmx8M" $DEMO_URL quarkus-native-simple-ce "Quarkus (JAX-RS) via GraalVM Native Image (20.2.0 CE)"
+/work/scripts/test-single.sh "/work/demo-quarkus/target/demo-ce -Xmn8M -Xmx8M" $DEMO_URL quarkus-native-simple-ce "Quarkus (REST) via GraalVM Native Image (20.1.0 CE)"
 sleep 2
 
 # run advanced quarkus native image test
-/work/scripts/test-single.sh "/work/demo-quarkus-jpa/target/demo-ce -Xmn8M -Xmx8M" $DEMO_URL quarkus-native-advanced-ce "Quarkus (JAX-RS + JPA) via GraalVM Native Image (20.2.0 CE)"
+/work/scripts/test-single.sh "/work/demo-quarkus-jpa/target/demo-ce -Xmn8M -Xmx8M" $DEMO_URL quarkus-native-advanced-ce "Quarkus (REST + JPA) via GraalVM Native Image (20.1.0 CE)"
 sleep 2
 
-# run simple spring-boot native image test
-/work/scripts/test-single.sh "/work/demo-spring-boot/target/demo-ce -Xmn16M -Xmx16M" $DEMO_URL spring-boot-native-simple-ce "Spring Boot (REST) via GraalVM Native Image (20.2.0 CE)"
+# run simple quarkus native image test
+/work/scripts/test-single.sh "/work/demo-quarkus/target/demo-ee -Xmn8M -Xmx8M" $DEMO_URL quarkus-native-simple-ee "Quarkus (REST) via GraalVM Native Image (20.1.0 EE)"
 sleep 2
 
-# run advanced spring-boot native image test
-/work/scripts/test-single.sh "/work/demo-spring-boot-jpa/target/demo-ce -Xmn16M -Xmx16M" $DEMO_URL spring-boot-native-advanced-ce "Spring Boot (REST + JPA) via GraalVM Native Image (20.2.0 CE)"
+# run advanced quarkus native image test
+/work/scripts/test-single.sh "/work/demo-quarkus-jpa/target/demo-ee -Xmn8M -Xmx8M" $DEMO_URL quarkus-native-advanced-ee "Quarkus (REST + JPA) via GraalVM Native Image (20.1.0 EE)"
 sleep 2
 
 # run simple python test
@@ -44,26 +44,26 @@ jabba ls | while read CURRENT_JAVA; do
     echo $(java -version)
 
     # run simple payara-micro test
-    /work/scripts/test-single.sh "java -Xmn8M -Xmx512M -jar /work/demo-payara/target/demo-payara-microbundle.jar --noCluster" $DEMO_URL payara-micro-simple-$CURRENT_JAVA "Payara Micro (JAX-RS) via Java Runtime ($CURRENT_JAVA)"
+    /work/scripts/test-single.sh "java -Xmn8M -Xmx512M -jar /work/demo-payara/target/demo-payara-microbundle.jar --noCluster" $DEMO_URL payara-micro-simple-$CURRENT_JAVA "Payara Micro (REST) via [$CURRENT_JAVA]"
     sleep 2
 
     # run advanced payara-micro test
-    /work/scripts/test-single.sh "java -Xmn16M -Xmx512M -jar /work/demo-payara-jpa/target/demo-payara-microbundle.jar --noCluster" $DEMO_URL payara-micro-advanced-$CURRENT_JAVA "Payara Micro (JAX-RS + JPA) via Java Runtime ($CURRENT_JAVA)"
+    /work/scripts/test-single.sh "java -Xmn16M -Xmx512M -jar /work/demo-payara-jpa/target/demo-payara-microbundle.jar --noCluster" $DEMO_URL payara-micro-advanced-$CURRENT_JAVA "Payara Micro (REST + JPA) via [$CURRENT_JAVA]"
     sleep 2
 
     # run simple spring-boot test
-    /work/scripts/test-single.sh "java -Xmn8M -Xmx32M -jar /work/demo-spring-boot/target/demo-spring-boot.jar" $DEMO_URL spring-boot-simple-$CURRENT_JAVA "Spring Boot (REST) via Java Runtime ($CURRENT_JAVA)"
+    /work/scripts/test-single.sh "java -Xmn8M -Xmx32M -jar /work/demo-spring-boot/target/demo-spring-boot.jar" $DEMO_URL spring-boot-simple-$CURRENT_JAVA "Spring Boot (REST) via [$CURRENT_JAVA]"
     sleep 2
 
     # run advanced spring-boot test
-    /work/scripts/test-single.sh "java -Xmn16M -Xmx32M -jar /work/demo-spring-boot-jpa/target/demo-spring-boot.jar" $DEMO_URL spring-boot-advanced-$CURRENT_JAVA "Spring Boot (REST + JPA) via Java Runtime ($CURRENT_JAVA)"
+    /work/scripts/test-single.sh "java -Xmn16M -Xmx32M -jar /work/demo-spring-boot-jpa/target/demo-spring-boot-jpa.jar" $DEMO_URL spring-boot-advanced-$CURRENT_JAVA "Spring Boot (REST + JPA) via [$CURRENT_JAVA]"
     sleep 2
 
     # run simple quarkus-java test
-    /work/scripts/test-single.sh "java -Xmn8M -Xmx32M -jar /work/demo-quarkus/target/*-runner.jar" $DEMO_URL quarkus-java-simple-$CURRENT_JAVA "Quarkus (JAX-RS) via Java Runtime ($CURRENT_JAVA)"
+    /work/scripts/test-single.sh "java -Xmn8M -Xmx32M -jar /work/demo-quarkus/target/*-runner.jar" $DEMO_URL quarkus-java-simple-$CURRENT_JAVA "Quarkus (REST) via [$CURRENT_JAVA]"
     sleep 2
 
     # run advanced quarkus-java test
-    /work/scripts/test-single.sh "java -Xmn16M -Xmx32M -jar /work/demo-quarkus-jpa/target/*-runner.jar" $DEMO_URL quarkus-java-advanced-$CURRENT_JAVA "Quarkus (JAX-RS + JPA) via Java Runtime ($CURRENT_JAVA)"
+    /work/scripts/test-single.sh "java -Xmn16M -Xmx32M -jar /work/demo-quarkus-jpa/target/*-runner.jar" $DEMO_URL quarkus-java-advanced-$CURRENT_JAVA "Quarkus (REST + JPA) via [$CURRENT_JAVA]"
     sleep 2
 done
