@@ -7,7 +7,7 @@ FROM centos:8
 # ENV HTTPS_PROXY=${http_proxy}
 ENV NO_PROXY=localhost,127.0.0.1
 
-ENV MAVEN_VERSION=3.6.3 
+ENV MAVEN_VERSION=3.8.1 
 ENV MAVEN_BASE_URL="https://apache.osuosl.org/maven/maven-3/${MAVEN_VERSION}/binaries" 
 ENV MAVEN_TARBALL="apache-maven-${MAVEN_VERSION}-bin.tar.gz" 
 ENV MAVEN_HOME=/opt/maven 
@@ -27,8 +27,10 @@ RUN mkdir -p ${MAVEN_HOME} ${MAVEN_HOME}/ref \
     && cp /tmp/settings_noproxy.xml ${MAVEN_HOME}/conf/settings.xml 
 
 # tools
+RUN yum -y install dnf-plugins-core
+RUN dnf config-manager --set-enabled powertools
 RUN dnf -y install gcc \
-    && dnf -y --enablerepo=PowerTools install libstdc++-static \
+    && dnf -y install libstdc++-static \
     && dnf -y install glibc-devel zlib-devel \
     # ps
     && dnf -y install procps \
@@ -41,18 +43,18 @@ RUN dnf -y install gcc \
     && pip3 install flask \
     && pip3 install psycopg2-binary
 
-COPY graalvm-ee-java11-linux-amd64-20.1.0.tar.gz /work/graalvm-ee-java11-linux-amd64-20.1.0.tar.gz
-COPY native-image-installable-svm-svmee-java11-linux-amd64-20.1.0.jar /work/native-image-installable-svm-svmee-java11-linux-amd64-20.1.0.jar
+COPY graalvm-ee-java11-linux-amd64-21.1.0.tar.gz /work/graalvm-ee-java11-linux-amd64-21.1.0.tar.gz
+COPY native-image-installable-svm-svmee-java11-linux-amd64-21.1.0.jar /work/native-image-installable-svm-svmee-java11-linux-amd64-21.1.0.jar
 
 # jabba with jdks
 RUN curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh \
-    && jabba install graalvm-ce@20.1.0-java11=tgz+https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.1.0/graalvm-ce-java11-linux-amd64-20.1.0.tar.gz \
-    && jabba use graalvm-ce@20.1.0-java11 \
+    && jabba install graalvm-ce@21.1.0-java11=tgz+https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-21.1.0/graalvm-ce-java11-linux-amd64-21.1.0.tar.gz \
+    && jabba use graalvm-ce@21.1.0-java11 \
     && gu install native-image \
-    && jabba install graalvm-ee@20.1.0-java11=tgz+file:///work/graalvm-ee-java11-linux-amd64-20.1.0.tar.gz \
-    && jabba use graalvm-ee@20.1.0-java11 \
-    && gu -L install /work/native-image-installable-svm-svmee-java11-linux-amd64-20.1.0.jar \
-    && jabba alias default graalvm-ce@20.1.0-java11
+    && jabba install graalvm-ee@21.1.0-java11=tgz+file:///work/graalvm-ee-java11-linux-amd64-21.1.0.tar.gz \
+    && jabba use graalvm-ee@21.1.0-java11 \
+    && gu -L install /work/native-image-installable-svm-svmee-java11-linux-amd64-21.1.0.jar \
+    && jabba alias default graalvm-ce@21.1.0-java11
 
 COPY ./psrecord-patch/main.py /usr/local/lib/python3.6/site-packages/psrecord/
 

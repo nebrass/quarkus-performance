@@ -5,13 +5,13 @@ The performance test runs inside a Docker container.
 
 The test uses the following demo projects:
 
-* **demo-payara** contains a simple REST application packaged as uber-jar with **Payara Micro (5.2020.3)** application server
-* **demo-payara-jpa** contains an advanced REST + CRUD: JSON-B, CDI, JPA, PostgresDB application packaged as uber-jar with **Payara Micro (5.2020.3)** application server
-* **demo-quarkus** contains a simple **Quarkus (1.6.1.Final)** application packaged as jar and additionally compiled as native image using the GraalVM Native Image
-* **demo-quarkus-jpa** contains an advanced REST + CRUD: JSON-B, CDI, JPA, PostgresDB **Quarkus (1.6.1.Final)** application packaged as jar and additionally compiled as native image using the GraalVM Native Image
+* **demo-payara** contains a simple REST application packaged as uber-jar with **Payara Micro (5.2021.2)** application server
+* **demo-payara-jpa** contains an advanced REST + CRUD: JSON-B, CDI, JPA, PostgresDB application packaged as uber-jar with **Payara Micro (5.2021.2)** application server
+* **demo-quarkus** contains a simple **Quarkus (1.13.3.Final)** application packaged as jar and additionally compiled as native image using the GraalVM Native Image
+* **demo-quarkus-jpa** contains an advanced REST + CRUD: JSON-B, CDI, JPA, PostgresDB **Quarkus (1.13.3.Final)** application packaged as jar and additionally compiled as native image using the GraalVM Native Image
 * **demo-python** contains a simple (REST service) and advanced (REST + CRUD) Python application
-* **demo-spring-boot** contains a simple REST service using **Spring Boot (2.3.2.RELEASE)**
-* **demo-spring-boot-jpa** contains an advanced REST + CRUD: JSON, JPA, PostgresDB service using **Spring Boot (2.3.2.RELEASE)**
+* **demo-spring-boot** contains a simple REST service using **Spring Boot (2.4.0-M3)**
+* **demo-spring-boot-jpa** contains an advanced REST + CRUD: JSON, JPA, PostgresDB service using **Spring Boot (2.4.0-M3)**
 
 ## **(1) Prepare and start plot-tests**
 
@@ -41,7 +41,7 @@ All plots are generated on my Notebook inside the running Docker container.
 
 Docker Host Machine:
 
-* CPU: Intel i7-8750H 2.20GHz (6 cores)
+* CPU: Intel(R) Core(TM) i7-8750H 2.20GHz
 * RAM: 32GB
 
 ### **(3.1) Quarkus via GraalVM Native Image**
@@ -55,15 +55,15 @@ Docker Host Machine:
 
 | REST Only                                         | REST + CRUD                                         |
 | ---------------------------------------------- | ------------------------------------------------ |
-| ![](plots/quarkus-java-simple-graalvm-ce@20.1.0-java11.png) | ![](plots/quarkus-java-advanced-graalvm-ce@20.1.0-java11.png) |
-| ![](plots/quarkus-java-simple-graalvm-ee@20.1.0-java11.png) | ![](plots/quarkus-java-advanced-graalvm-ee@20.1.0-java11.png) |
+| ![](plots/quarkus-java-simple-graalvm-ce@21.1.0-java11.png) | ![](plots/quarkus-java-advanced-graalvm-ce@21.1.0-java11.png) |
+| ![](plots/quarkus-java-simple-graalvm-ee@21.1.0-java11.png) | ![](plots/quarkus-java-advanced-graalvm-ee@21.1.0-java11.png) |
 
 ### **(3.3) Payara Micro via Java Runtime**
 
 | REST Only                                         | REST + CRUD                                         |
 | ---------------------------------------------- | ------------------------------------------------ |
-| ![](plots/payara-micro-simple-graalvm-ce@20.1.0-java11.png) | ![](plots/payara-micro-advanced-graalvm-ce@20.1.0-java11.png) |
-| ![](plots/payara-micro-simple-graalvm-ee@20.1.0-java11.png) | ![](plots/payara-micro-advanced-graalvm-ee@20.1.0-java11.png) |
+| ![](plots/payara-micro-simple-graalvm-ce@21.1.0-java11.png) | ![](plots/payara-micro-advanced-graalvm-ce@21.1.0-java11.png) |
+| ![](plots/payara-micro-simple-graalvm-ee@21.1.0-java11.png) | ![](plots/payara-micro-advanced-graalvm-ee@21.1.0-java11.png) |
 
 ### **(3.4) Spring Boot via GraalVM Native Image**
 
@@ -75,8 +75,8 @@ Docker Host Machine:
 
 | REST Only                                        | REST + CRUD                                        |
 | --------------------------------------------- | ----------------------------------------------- |
-| ![](plots/spring-boot-simple-graalvm-ce@20.1.0-java11.png) | ![](plots/spring-boot-advanced-graalvm-ce@20.1.0-java11.png) |
-| ![](plots/spring-boot-simple-graalvm-ee@20.1.0-java11.png) | ![](plots/spring-boot-advanced-graalvm-ee@20.1.0-java11.png) |
+| ![](plots/spring-boot-simple-graalvm-ce@21.1.0-java11.png) | ![](plots/spring-boot-advanced-graalvm-ce@21.1.0-java11.png) |
+| ![](plots/spring-boot-simple-graalvm-ee@21.1.0-java11.png) | ![](plots/spring-boot-advanced-graalvm-ee@21.1.0-java11.png) |
 
 ### **(3.6) Python**
 
